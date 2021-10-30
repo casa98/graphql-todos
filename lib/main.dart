@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'GraphQL Demo',
         themeMode: ThemeMode.system,
         darkTheme: ThemeData.dark(),
-        home: const MyHomePage(),
+        home: MyHomePage(),
       ),
     );
   }
