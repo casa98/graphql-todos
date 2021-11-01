@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql/todo_details_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'models/todo_item.dart';
 import 'query_strings.dart';
 
-
 class GetToDos extends StatelessWidget {
-  const GetToDos({Key? key}) : super(key: key);
+  final VoidCallback onDidPopNext;
+  const GetToDos({Key? key, required this.onDidPopNext}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +36,20 @@ class GetToDos extends StatelessWidget {
             .toList();
         return Expanded(
           child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: todos.length,
             itemBuilder: (context, index) {
               TodoItem todo = todos[index];
               return ListTile(
                 title: Text(todo.title),
                 subtitle: Text('Is Completed: ${todo.isCompleted}'),
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => ToDoDetails(todo: todo)),
+                  );
+                  onDidPopNext();
+                },
               );
             },
           ),

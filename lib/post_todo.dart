@@ -3,10 +3,7 @@ import 'package:flutter_graphql/query_strings.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class PostToDo extends StatelessWidget {
-  const PostToDo({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  const PostToDo({Key? key, required this.controller}) : super(key: key);
 
   final TextEditingController controller;
 
@@ -14,24 +11,21 @@ class PostToDo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-          document: gql(QueryStrings.postPrivateTodo),
-          onCompleted: (value) {
-            controller.clear();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content:
-                  Text('Todo successfully created in database'),
-            ));
-          },
-          onError: (error) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content:
-                  Text('Something went wrong saving your todo'),
-            ));
-          }),
+        document: gql(QueryStrings.postPrivateTodo),
+        onCompleted: (value) {
+          controller.clear();
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text('Todo successfully created in database'),
+          ));
+        },
+        onError: (error) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text('Something went wrong saving your todo'),
+          ));
+        },
+      ),
       builder: (RunMutation runMutation, QueryResult? result) {
         return ElevatedButton(
           onPressed: () {
@@ -41,8 +35,7 @@ class PostToDo extends StatelessWidget {
                 'isPublic': false,
               });
             } else {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 behavior: SnackBarBehavior.floating,
                 content: Text('Add some description to your todo'),
               ));
