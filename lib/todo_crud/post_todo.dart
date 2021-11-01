@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql/query_strings.dart';
+import 'package:flutter_graphql/config/query_strings.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class PostToDo extends StatelessWidget {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql/main.dart';
 import 'package:flutter_graphql/models/todo_item.dart';
-import 'package:flutter_graphql/query_strings.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+
+import 'todo_crud/delete_todo.dart';
+import 'todo_crud/update_todo.dart';
 
 class ToDoDetails extends StatefulWidget {
   final TodoItem todo;
@@ -61,39 +62,9 @@ class _ToDoDetailsState extends State<ToDoDetails> with RouteAware {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Edit'),
-                ),
+                UpdateToDo(todo: widget.todo),
                 const SizedBox(width: 8.0),
-                Mutation(
-                    options: MutationOptions(
-                      document: gql(QueryStrings.deleteTodo),
-                      onCompleted: (value) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          content:
-                              Text('Todo successfully deleted from database'),
-                        ));
-                      },
-                      onError: (value) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          content:
-                              Text('Something went wrong deleting your todo'),
-                        ));
-                      },
-                    ),
-                    builder: (RunMutation runMutation, QueryResult? result) {
-                      return ElevatedButton(
-                        onPressed: () {
-                          runMutation({'id': widget.todo.id});
-                        },
-                        child: const Text('Delete'),
-                      );
-                    }),
+                DeleteToDo(todo: widget.todo),
               ],
             )
           ],

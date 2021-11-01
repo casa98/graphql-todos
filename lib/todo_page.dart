@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'get_todos.dart';
+import 'todo_crud/get_todos.dart';
 import 'main.dart';
-import 'post_todo.dart';
+import 'todo_crud/post_todo.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

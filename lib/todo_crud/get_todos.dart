@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql/todo_details_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'models/todo_item.dart';
-import 'query_strings.dart';
+import '../models/todo_item.dart';
+import '../config/query_strings.dart';
 
 class GetToDos extends StatelessWidget {
   const GetToDos({Key? key}) : super(key: key);

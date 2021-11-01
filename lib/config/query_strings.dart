@@ -21,6 +21,15 @@ class QueryStrings {
     }
   }""";
 
+  static const updateTodo = """
+  mutation toggleTodo(\$id:Int!, \$title: String!) {
+    action: update_todos(where: {id: {_eq: \$id}}, _set: {title: \$title}) {
+      returning {
+        title
+      }
+    }
+  }""";
+
   static const deleteTodo = """
   mutation delete(\$id:Int!) {
     action: delete_todos(where: {id: {_eq: \$id}}) {
