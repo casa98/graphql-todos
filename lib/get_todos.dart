@@ -6,8 +6,7 @@ import 'models/todo_item.dart';
 import 'query_strings.dart';
 
 class GetToDos extends StatelessWidget {
-  final VoidCallback onDidPopNext;
-  const GetToDos({Key? key, required this.onDidPopNext}) : super(key: key);
+  const GetToDos({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +45,11 @@ class GetToDos extends StatelessWidget {
                 onTap: () async {
                   await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => ToDoDetails(todo: todo)),
+                    MaterialPageRoute(
+                      builder: (_) => ToDoDetails(todo: todo),
+                    ),
                   );
-                  onDidPopNext();
+                  refetch!();
                 },
               );
             },

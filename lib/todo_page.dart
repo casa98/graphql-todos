@@ -5,7 +5,7 @@ import 'main.dart';
 import 'post_todo.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -13,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with RouteAware {
   final controller = TextEditingController();
+  int counter = 0;
 
   @override
   void didChangeDependencies() {
@@ -66,9 +67,7 @@ class _MyHomePageState extends State<MyHomePage> with RouteAware {
               ],
             ),
           ),
-          GetToDos(
-            onDidPopNext: () => setState(() {}),
-          ),
+          const GetToDos(),
         ],
       ),
     );
